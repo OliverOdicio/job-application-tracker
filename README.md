@@ -5,9 +5,9 @@ This is a web application built using Flask and MySQL to track job applications.
 
 The application allows users to:
 - Add, view, edit, and delete companies
-- Add, view, edit, and delete jobs
-- Add, view, edit, and delete contacts
-- Add, view, edit, and delete applications
+- Add and view jobs
+- Add and view contacts
+- Add and view applications
 - View a dashboard with statistics
 - Use a job match feature based on skills
 
