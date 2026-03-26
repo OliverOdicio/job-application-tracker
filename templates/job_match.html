@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Job Match</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div style="margin-bottom:20px;">
+    <a href="/">Dashboard</a> |
+    <a href="/companies">Companies</a> |
+    <a href="/jobs">Jobs</a> |
+    <a href="/contacts">Contacts</a> |
+    <a href="/applications">Applications</a> |
+    <a href="/job_match">Job Match</a>
+</div>
+
+<h1>Job Match</h1>
+
+<div class="container">
+
+<form method="POST">
+
+    <label>Enter your skills (comma separated):</label><br><br>
+
+    <input type="text" name="skills" placeholder="Python, SQL, Flask">
+
+    <br><br>
+
+    <button type="submit">Find Matches</button>
+
+</form>
+
+</div>
+
+<br>
+
+{% if matches %}
+
+<div class="container">
+
+<h2>Matching Jobs</h2>
+
+<table>
+
+<tr>
+    <th>Job</th>
+    <th>Match %</th>
+</tr>
+
+{% for job in matches %}
+
+<tr>
+    <td>{{ job.title }}</td>
+    <td>{{ job.percentage }}%</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endif %}
+
+</body>
+</html>

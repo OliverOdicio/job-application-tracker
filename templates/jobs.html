@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Jobs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div style="margin-bottom:20px;">
+    <a href="/">Dashboard</a> |
+    <a href="/companies">Companies</a> |
+    <a href="/jobs">Jobs</a> |
+    <a href="/contacts">Contacts</a> |
+    <a href="/applications">Applications</a> |
+    <a href="/job_match">Job Match</a>
+</div>
+
+<h1>Jobs</h1>
+
+<a href="/add_job">Add Job</a>
+
+<br><br>
+
+<div class="container">
+
+<table>
+
+<tr>
+    <th>ID</th>
+    <th>Job Title</th>
+    <th>Company</th>
+</tr>
+
+{% for job in jobs %}
+
+<tr>
+    <td>{{ job.job_id }}</td>
+    <td>{{ job.job_title }}</td>
+    <td>{{ job.company_name }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>

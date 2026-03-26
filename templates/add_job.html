@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<h1>Add Job</h1>
+
+<div class="container">
+
+<form method="POST">
+
+    <label>Job Title:</label><br>
+    <input type="text" name="job_title">
+
+    <br><br>
+
+    <label>Company:</label><br>
+    <select name="company_id">
+
+    {% for company in companies %}
+
+        <option value="{{ company.company_id }}">
+            {{ company.company_name }}
+        </option>
+
+    {% endfor %}
+
+    </select>
+
+    <br><br>
+
+    <button type="submit">Add Job</button>
+
+</form>
+
+</div>

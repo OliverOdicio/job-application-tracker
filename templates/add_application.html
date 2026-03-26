@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<h1>Add Application</h1>
+
+<form method="POST">
+
+Job:
+
+<select name="job_id">
+
+{% for job in jobs %}
+
+<option value="{{ job.job_id }}">
+{{ job.job_title }}
+</option>
+
+{% endfor %}
+
+</select>
+
+<br><br>
+
+Status:
+
+<select name="status">
+<option>Applied</option>
+<option>Screening</option>
+<option>Interview</option>
+<option>Offer</option>
+<option>Rejected</option>
+</select>
+
+<br><br>
+
+Date:
+
+<input type="date" name="application_date">
+
+<br><br>
+
+<button type="submit">Add Application</button>
+
+</form>

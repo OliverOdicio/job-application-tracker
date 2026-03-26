@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<h1>Applications</h1>
+
+<a href="/add_application">Add Application</a>
+
+<table border="1">
+
+<tr>
+<th>ID</th>
+<th>Job</th>
+<th>Status</th>
+<th>Date</th>
+</tr>
+
+{% for app in applications %}
+
+<tr>
+<td>{{ app.application_id }}</td>
+<td>{{ app.job_title }}</td>
+<td>{{ app.status }}</td>
+<td>{{ app.application_date }}</td>
+</tr>
+
+{% endfor %}
+
+</table>

@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<h1>Contacts</h1>
+
+<a href="/add_contact">Add Contact</a>
+
+<table border="1">
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Company</th>
+<th>Email</th>
+</tr>
+
+{% for contact in contacts %}
+
+<tr>
+<td>{{ contact.contact_id }}</td>
+<td>{{ contact.contact_name }}</td>
+<td>{{ contact.company_name }}</td>
+<td>{{ contact.email }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
