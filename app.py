@@ -170,6 +170,54 @@ def add_job():
 
     return render_template("add_job.html", companies=companies)
 
+
+@app.route("/edit_job/<int:job_id>", methods=["GET", "POST"])
+def edit_job(job_id):
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    if request.method == "POST":
+        company_id = request.form["company_id"]
+        job_title = request.form["job_title"]
+
+        cursor.execute(
+            "UPDATE jobs SET company_id=%s, job_title=%s WHERE job_id=%s",
+            (company_id, job_title, job_id)
+        )
+
+        conn.commit()
+        conn.close()
+
+        return redirect(url_for("list_jobs"))
+
+    cursor.execute("SELECT * FROM jobs WHERE job_id = %s", (job_id,))
+    job = cursor.fetchone()
+
+    cursor.execute("SELECT * FROM companies")
+    companies = cursor.fetchall()
+
+    conn.close()
+
+    return render_template("edit_job.html", job=job, companies=companies)
+
+
+@app.route("/delete_job/<int:job_id>")
+def delete_job(job_id):
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "DELETE FROM jobs WHERE job_id = %s",
+        (job_id,)
+    )
+
+    conn.commit()
+    conn.close()
+
+    return redirect(url_for("list_jobs"))
+
 @app.route("/contacts")
 def list_contacts():
 
@@ -217,6 +265,58 @@ def add_contact():
     conn.close()
 
     return render_template("add_contact.html", companies=companies)
+
+@app.route("/edit_contact/<int:contact_id>", methods=["GET", "POST"])
+def edit_contact(contact_id):
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    if request.method == "POST":
+
+        contact_name = request.form["contact_name"]
+        email = request.form["email"]
+        company_id = request.form["company_id"]
+
+        cursor.execute(
+            "UPDATE contacts SET contact_name=%s, email=%s, company_id=%s WHERE contact_id=%s",
+            (contact_name, email, company_id, contact_id)
+        )
+
+        conn.commit()
+        conn.close()
+
+        return redirect(url_for("list_contacts"))
+
+    cursor.execute("SELECT * FROM contacts WHERE contact_id = %s", (contact_id,))
+    contact = cursor.fetchone()
+
+    cursor.execute("SELECT * FROM companies")
+    companies = cursor.fetchall()
+
+    conn.close()
+
+    return render_template("edit_contact.html", contact=contact, companies=companies)
+
+
+@app.route("/delete_contact/<int:contact_id>")
+def delete_contact(contact_id):
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "DELETE FROM contacts WHERE contact_id = %s",
+        (contact_id,)
+    )
+
+    conn.commit()
+    conn.close()
+
+    return redirect(url_for("list_contacts"))
+
+
+
 @app.route("/applications")
 def list_applications():
 
@@ -264,6 +364,55 @@ def add_application():
     conn.close()
 
     return render_template("add_application.html", jobs=jobs)
+
+@app.route("/edit_application/<int:application_id>", methods=["GET", "POST"])
+def edit_application(application_id):
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    if request.method == "POST":
+
+        job_id = request.form["job_id"]
+        status = request.form["status"]
+        application_date = request.form["application_date"]
+
+        cursor.execute(
+            "UPDATE applications SET job_id=%s, status=%s, application_date=%s WHERE application_id=%s",
+            (job_id, status, application_date, application_id)
+        )
+
+        conn.commit()
+        conn.close()
+
+        return redirect(url_for("list_applications"))
+
+    cursor.execute("SELECT * FROM applications WHERE application_id = %s", (application_id,))
+    application = cursor.fetchone()
+
+    cursor.execute("SELECT * FROM jobs")
+    jobs = cursor.fetchall()
+
+    conn.close()
+
+    return render_template("edit_application.html", application=application, jobs=jobs)
+
+
+@app.route("/delete_application/<int:application_id>")
+def delete_application(application_id):
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "DELETE FROM applications WHERE application_id = %s",
+        (application_id,)
+    )
+
+    conn.commit()
+    conn.close()
+
+    return redirect(url_for("list_applications"))
 
 @app.route("/job_match", methods=["GET", "POST"])
 def job_match():

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Job</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div style="margin-bottom:20px;">
+    <a href="/">Dashboard</a> |
+    <a href="/companies">Companies</a> |
+    <a href="/jobs">Jobs</a> |
+    <a href="/contacts">Contacts</a> |
+    <a href="/applications">Applications</a> |
+    <a href="/job_match">Job Match</a>
+</div>
+
+<h1>Edit Job</h1>
+
+<form method="POST">
+
+    <label>Company:</label>
+    <select name="company_id" required>
+        {% for company in companies %}
+            <option value="{{ company.company_id }}"
+                {% if company.company_id == job.company_id %}selected{% endif %}>
+                {{ company.company_name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+
+    <label>Job Title:</label>
+    <input type="text" name="job_title" value="{{ job.job_title }}" required>
+
+    <br><br>
+
+    <button type="submit">Update Job</button>
+</form>
+
+<br>
+
+<a href="/jobs">Back to Jobs</a>
+
+</body>
+</html>

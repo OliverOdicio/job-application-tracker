@@ -25,18 +25,22 @@
 <form method="POST">
 
     <label>Company Name:</label><br>
-    <input type="text" name="company_name" value="{{ company.company_name }}">
+    <input type="text" name="company_name" value="{{ company.company_name }}" required>
 
     <br><br>
 
     <label>Location:</label><br>
-    <input type="text" name="location" value="{{ company.location }}">
+    <input type="text" name="location" value="{{ company.location }}" required>
 
     <br><br>
 
     <button type="submit">Update Company</button>
-
 </form>
+
+<br>
+
+<a href="/companies">⬅ Back to Companies</a>
+
 
 </div>
 

@@ -12,7 +12,24 @@ h1 {
 
 a {
     text-decoration: none;
-    color: blue;
+    color: #007BFF;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
 
 table {
@@ -26,6 +43,10 @@ th, td {
     border: 1px solid #ccc;
     padding: 8px;
     text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
 th {

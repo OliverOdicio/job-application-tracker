@@ -1,27 +1,63 @@
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Applications</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div style="margin-bottom:20px;">
+    <a href="/">Dashboard</a> |
+    <a href="/companies">Companies</a> |
+    <a href="/jobs">Jobs</a> |
+    <a href="/contacts">Contacts</a> |
+    <a href="/applications">Applications</a> |
+    <a href="/job_match">Job Match</a>
+</div>
 
 <h1>Applications</h1>
 
 <a href="/add_application">Add Application</a>
 
+<br><br>
+
+<div class="container">
+
 <table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Job</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Actions</th>
+    </tr>
 
-<tr>
-<th>ID</th>
-<th>Job</th>
-<th>Status</th>
-<th>Date</th>
-</tr>
-
-{% for app in applications %}
-
-<tr>
-<td>{{ app.application_id }}</td>
-<td>{{ app.job_title }}</td>
-<td>{{ app.status }}</td>
-<td>{{ app.application_date }}</td>
-</tr>
-
-{% endfor %}
-
+    {% for app in applications %}
+    <tr>
+        <td>{{ app.application_id }}</td>
+        <td>{{ app.job_title }}</td>
+        <td>{{ app.status }}</td>
+        <td>{{ app.application_date }}</td>
+        <td>
+            <a href="/edit_application/{{ app.application_id }}">Edit</a> |
+            <a href="/delete_application/{{ app.application_id }}" onclick="return confirm('Are you sure you want to delete this application?')">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
 </table>
+
+</div>
+
+<br>
+
+<div style="margin-bottom: 20px;">
+    <a href="/" style="background-color: #007BFF; color: white; padding: 8px 12px; border-radius: 5px; text-decoration: none;">
+        🏠 Home
+    </a>
+</div>
+
+</body>
+</html>

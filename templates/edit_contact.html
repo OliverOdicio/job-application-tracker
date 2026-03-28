@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Contact</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div style="margin-bottom:20px;">
+    <a href="/">Dashboard</a> |
+    <a href="/companies">Companies</a> |
+    <a href="/jobs">Jobs</a> |
+    <a href="/contacts">Contacts</a> |
+    <a href="/applications">Applications</a> |
+    <a href="/job_match">Job Match</a>
+</div>
+
+<h1>Edit Contact</h1>
+
+<form method="POST">
+
+    <label>Name:</label>
+    <input type="text" name="contact_name" value="{{ contact.contact_name }}" required>
+
+    <br><br>
+
+    <label>Email:</label>
+    <input type="email" name="email" value="{{ contact.email }}" required>
+
+    <br><br>
+
+    <label>Company:</label>
+    <select name="company_id" required>
+        {% for company in companies %}
+            <option value="{{ company.company_id }}"
+                {% if company.company_id == contact.company_id %}selected{% endif %}>
+                {{ company.company_name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+
+    <button type="submit">Update Contact</button>
+</form>
+
+<br>
+
+<a href="/contacts">Back to Contacts</a>
+
+</body>
+</html>
