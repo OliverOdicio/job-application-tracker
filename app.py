@@ -17,6 +17,7 @@ def dashboard():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
 
+    # Totals
     cursor.execute("SELECT COUNT(*) AS total FROM companies")
     companies = cursor.fetchone()["total"]
 
@@ -29,6 +30,24 @@ def dashboard():
     cursor.execute("SELECT COUNT(*) AS total FROM applications")
     applications = cursor.fetchone()["total"]
 
+    # 🔥 NEW 1: Application Status Summary
+    cursor.execute("""
+        SELECT status, COUNT(*) as count
+        FROM applications
+        GROUP BY status
+    """)
+    status_summary = cursor.fetchall()
+
+    # 🔥 NEW 2: Recent Applications
+    cursor.execute("""
+        SELECT applications.*, jobs.job_title
+        FROM applications
+        JOIN jobs ON applications.job_id = jobs.job_id
+        ORDER BY application_date DESC
+        LIMIT 5
+    """)
+    recent_apps = cursor.fetchall()
+
     conn.close()
 
     return render_template(
@@ -36,7 +55,9 @@ def dashboard():
         companies=companies,
         jobs=jobs,
         contacts=contacts,
-        applications=applications
+        applications=applications,
+        status_summary=status_summary,
+        recent_apps=recent_apps
     )
 
 @app.route("/companies")

@@ -1,22 +1,100 @@
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <a href="/">Dashboard</a>
+    <a href="/companies">Companies</a>
+    <a href="/jobs">Jobs</a>
+    <a href="/contacts">Contacts</a>
+    <a href="/applications">Applications</a>
+    <a href="/job_match">Job Match</a>
+</div>
 
 <h1>Dashboard</h1>
 
-<div class="container">
+<div>
+    <div class="card">
+        <h3>Total Companies</h3>
+        <p>{{ companies }}</p>
+    </div>
 
-    <p><strong>Total Companies:</strong> {{ companies }}</p>
-    <p><strong>Total Jobs:</strong> {{ jobs }}</p>
-    <p><strong>Total Contacts:</strong> {{ contacts }}</p>
-    <p><strong>Total Applications:</strong> {{ applications }}</p>
+    <div class="card">
+        <h3>Total Jobs</h3>
+        <p>{{ jobs }}</p>
+    </div>
 
+    <div class="card">
+        <h3>Total Contacts</h3>
+        <p>{{ contacts }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Total Applications</h3>
+        <p>{{ applications }}</p>
+    </div>
 </div>
 
 <br>
 
-<div class="container">
+<div class="container quick-links">
+    <h2>Quick Navigation</h2>
+
     <a href="/companies">Companies</a><br><br>
     <a href="/jobs">Jobs</a><br><br>
     <a href="/contacts">Contacts</a><br><br>
     <a href="/applications">Applications</a><br><br>
     <a href="/job_match">Job Match</a>
 </div>
+
+<br>
+
+<div class="container">
+    <h2>Application Status Summary</h2>
+
+    <table>
+        <tr>
+            <th>Status</th>
+            <th>Total</th>
+        </tr>
+
+        {% for item in status_summary %}
+        <tr>
+            <td>{{ item.status }}</td>
+            <td>{{ item.count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<br>
+
+<div class="container">
+    <h2>Recent Applications</h2>
+
+    <table>
+        <tr>
+            <th>Job</th>
+            <th>Status</th>
+            <th>Date</th>
+        </tr>
+
+        {% for app in recent_apps %}
+        <tr>
+            <td>{{ app.job_title }}</td>
+            <td>{{ app.status }}</td>
+            <td>{{ app.application_date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>

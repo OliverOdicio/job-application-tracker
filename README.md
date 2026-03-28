@@ -1,48 +1,85 @@
 # Job Application Tracker
 
 ## Description
-This is a web application built using Flask and MySQL to track job applications.
+Job Application Tracker is a full-stack web application built with Flask and MySQL to help users organize and manage their job search process.
 
-The application allows users to:
-- Add, view, edit, and delete companies
-- Add and view jobs
-- Add and view contacts
-- Add and view applications
-- View a dashboard with statistics
-- Use a job match feature based on skills
+The application allows users to track:
+- Companies
+- Jobs
+- Contacts
+- Applications
+
+It also includes a dashboard with statistics and a job match feature based on user-entered skills.
 
 ---
 
 ## Features
-- Clean user interface with navigation menu
-- Dashboard with statistics
-- Job matching feature based on skills
-- Full CRUD functionality for main tables
+
+### CRUD Functionality
+The application supports full CRUD operations for all main tables:
+
+- **Companies** → Add, View, Edit, Delete
+- **Jobs** → Add, View, Edit, Delete
+- **Contacts** → Add, View, Edit, Delete
+- **Applications** → Add, View, Edit, Delete
+
+### Dashboard
+The dashboard displays:
+- Total number of companies
+- Total number of jobs
+- Total number of contacts
+- Total number of applications
+- Application status summary
+- Recent applications
+
+### Job Match Feature
+Users can enter skills such as:
+- Python
+- SQL
+- Data
+- AI
+
+The system compares those skills with job titles and returns a match percentage.
 
 ---
 
 ## Technologies Used
-- Python (Flask)
+- Python
+- Flask
 - MySQL
 - HTML
+- CSS
+- Git/GitHub
 
 ---
 
-## How to Run the Project
+## Project Structure
 
-1. Install dependencies:
-pip install -r requirements.txt
-
-2. Open MySQL Workbench and run the file:
-schema.sql
-
-3. Run the application:
-python app.py
-
-4. Open your browser and go to:
-http://127.0.0.1:5000
-
----
-
-## Author
-Oliver Odicio
+```bash
+job_tracker/
+│
+├── app.py
+├── database.py
+├── schema.sql
+├── README.md
+├── AI_USAGE.md
+├── requirements.txt
+│
+├── templates/
+│   ├── dashboard.html
+│   ├── companies.html
+│   ├── edit_company.html
+│   ├── jobs.html
+│   ├── edit_job.html
+│   ├── contacts.html
+│   ├── edit_contact.html
+│   ├── applications.html
+│   ├── edit_application.html
+│   ├── job_match.html
+│   ├── add_company.html
+│   ├── add_job.html
+│   ├── add_contact.html
+│   └── add_application.html
+│
+└── static/
+    └── style.css
