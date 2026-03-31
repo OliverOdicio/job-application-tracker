@@ -84,12 +84,15 @@ job_tracker/
 └── static/
     └── style.css
 
-Setup Instructions
-1. Clone the repository
+---
+
+## Setup Instructions
+
+### 1. Clone the repository
 git clone https://github.com/OliverOdicio/job-application-tracker.git
 cd job-application-tracker
 
-2. Create and activate a virtual environment (optional but recommended)
+### 2. Create and activate a virtual environment (optional but recommended)
 python -m venv .venv
 On Windows:
 .venv\Scripts\activate
@@ -97,17 +100,17 @@ On Windows:
 On Mac/Linux:
 source .venv/bin/activate
 
-3. Install dependencies
+### 3. Install dependencies
 pip install -r requirements.txt
 
-4. Create the MySQL database
+### 4. Create the MySQL database
 Open MySQL Workbench and run:
 
 schema.sql
 
 This will create the job_tracker database and tables.
 
-5. Update MySQL credentials
+### 5. Update MySQL credentials
 Before running the app, open app.py and update the MySQL connection with your local MySQL credentials:
 
 host="localhost"
@@ -115,10 +118,10 @@ user="root"
 password="YOUR_PASSWORD"
 database="job_tracker"
 
-6. Run the application
+### 6. Run the application
 python app.py
 
-7. Open in browser
+### 7. Open in browser
 Go to:
 http://127.0.0.1:5000
 
