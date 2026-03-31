@@ -4,10 +4,12 @@
 - ChatGPT
 
 ## Key Prompts
-- "Create Flask CRUD routes for MySQL database"
-- "Explain how Flask templates work"
-- "Fix MySQL connection error"
-- "Create Job Match feature in Flask"
+- "Create Flask CRUD routes for a MySQL database project"
+- "Explain how Flask templates and render_template work"
+- "Help fix a MySQL connection error in Flask"
+- "Create a Job Match feature in Flask based on user-entered skills"
+- "Improve the dashboard UI using HTML and CSS"
+- "Help add edit and delete functionality to Flask routes"
 
 ## What Worked Well
 - ChatGPT helped create CRUD operations quickly
